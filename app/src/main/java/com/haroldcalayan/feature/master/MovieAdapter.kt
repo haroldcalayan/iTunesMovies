@@ -8,26 +8,31 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.haroldcalayan.R
-import com.haroldcalayan.dummy.DummyContent
+import com.haroldcalayan.data.model.Movie
 import com.haroldcalayan.feature.detail.DetailActivity
 import com.haroldcalayan.feature.detail.DetailFragment
+import com.haroldcalayan.utils.JsonUtils
 
-class SimpleItemRecyclerViewAdapter(
-    private val parentActivity: MasterActivity,
-    private val values: List<DummyContent.DummyItem>,
-    private val twoPane: Boolean
-) :
-    RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
+    private lateinit var parentActivity: MasterActivity
+    private lateinit var movies: List<Movie>
+    private var twoPane: Boolean = false
     private val onClickListener: View.OnClickListener
+
+    constructor(parentActivity: MasterActivity, values: List<Movie>, twoPane: Boolean) {
+        this.parentActivity = parentActivity
+        this.movies = values
+        this.twoPane = twoPane
+    }
 
     init {
         onClickListener = View.OnClickListener { v ->
-            val item = v.tag as DummyContent.DummyItem
+            val item = v.tag as Movie
             if (twoPane) {
                 val fragment = DetailFragment().apply {
                     arguments = Bundle().apply {
-                        putString(DetailFragment.ARG_ITEM_ID, item.id)
+                        putString(DetailFragment.ARG_ITEM, JsonUtils.getGson().toJson(item))
                     }
                 }
                 parentActivity.supportFragmentManager
@@ -36,7 +41,7 @@ class SimpleItemRecyclerViewAdapter(
                     .commit()
             } else {
                 val intent = Intent(v.context, DetailActivity::class.java).apply {
-                    putExtra(DetailFragment.ARG_ITEM_ID, item.id)
+                    putExtra(DetailFragment.ARG_ITEM, item.id)
                 }
                 v.context.startActivity(intent)
             }
@@ -56,9 +61,9 @@ class SimpleItemRecyclerViewAdapter(
         holder: ViewHolder,
         position: Int
     ) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = movies[position]
+        holder.idView.text = item.country
+        holder.contentView.text = item.currency
 
         with(holder.itemView) {
             tag = item
@@ -66,7 +71,12 @@ class SimpleItemRecyclerViewAdapter(
         }
     }
 
-    override fun getItemCount() = values.size
+    override fun getItemCount() = movies.size
+
+    fun updateList(movies: List<Movie>) {
+        this.movies = movies
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.id_text)
