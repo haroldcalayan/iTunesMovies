@@ -10,7 +10,7 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
     <activity
-        android:name=".ItemListActivity"
+        android:name=".feature.master.ItemListActivity"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
@@ -20,13 +20,13 @@
       </intent-filter>
     </activity>
     <activity
-        android:name=".ItemDetailActivity"
+        android:name=".feature.detail.ItemDetailActivity"
         android:label="@string/title_item_detail"
-        android:parentActivityName=".ItemListActivity"
+        android:parentActivityName=".feature.master.ItemListActivity"
         android:theme="@style/AppTheme.NoActionBar">
       <meta-data
           android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.haroldcalayan.ItemListActivity" />
+          android:value="com.haroldcalayan.feature.master.ItemListActivity" />
     </activity>
   </application>
 

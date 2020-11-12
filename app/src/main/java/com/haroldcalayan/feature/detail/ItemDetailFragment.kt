@@ -1,4 +1,4 @@
-package com.haroldcalayan
+package com.haroldcalayan.feature.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.haroldcalayan.R
 import com.haroldcalayan.dummy.DummyContent
 
 /**
@@ -17,9 +18,6 @@ import com.haroldcalayan.dummy.DummyContent
  */
 class ItemDetailFragment : Fragment() {
 
-  /**
-   * The dummy content this fragment is presenting.
-   */
   private var item: DummyContent.DummyItem? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {

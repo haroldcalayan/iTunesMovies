@@ -1,4 +1,4 @@
-package com.haroldcalayan
+package com.haroldcalayan.feature.master
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.haroldcalayan.feature.detail.ItemDetailActivity
+import com.haroldcalayan.feature.detail.ItemDetailFragment
+import com.haroldcalayan.R
 
 import com.haroldcalayan.dummy.DummyContent
 
