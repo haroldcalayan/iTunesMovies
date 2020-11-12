@@ -68,13 +68,20 @@ android {
     main {
       java.srcDirs = ['src/main/java']
       res.srcDirs = [
+              'src/main/res/layouts/detail',
+              'src/main/res/layouts/master',
               'src/main/res/layouts/splash',
+              'src/main/res/layouts/common',
               'src/main/res/layouts',
 
-              'src/main/res/drawable/splash',
-              'src/main/res/drawable',
+              'src/main/res/drawables/detail',
+              'src/main/res/drawables/master',
+              'src/main/res/drawables/splash',
+              'src/main/res/drawables/common',
+              'src/main/res/drawables',
 
               'src/main/res/layout',
+              'src/main/res/drawable',
               'src/main/res'
       ]
     }
