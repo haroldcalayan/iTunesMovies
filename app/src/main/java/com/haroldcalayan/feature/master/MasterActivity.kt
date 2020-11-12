@@ -12,8 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.haroldcalayan.feature.detail.ItemDetailActivity
-import com.haroldcalayan.feature.detail.ItemDetailFragment
+import com.haroldcalayan.feature.detail.DetailActivity
+import com.haroldcalayan.feature.detail.DetailFragment
 import com.haroldcalayan.R
 
 import com.haroldcalayan.dummy.DummyContent
@@ -22,11 +22,11 @@ import com.haroldcalayan.dummy.DummyContent
  * An activity representing a list of Pings. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
- * lead to a [ItemDetailActivity] representing
+ * lead to a [DetailActivity] representing
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-class ItemListActivity : AppCompatActivity() {
+class MasterActivity : AppCompatActivity() {
 
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -36,7 +36,7 @@ class ItemListActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_item_list)
+    setContentView(R.layout.activity_master)
 
     val toolbar = findViewById<Toolbar>(R.id.toolbar)
     setSupportActionBar(toolbar)
@@ -64,7 +64,7 @@ class ItemListActivity : AppCompatActivity() {
   }
 
   class SimpleItemRecyclerViewAdapter(
-    private val parentActivity: ItemListActivity,
+    private val parentActivity: MasterActivity,
     private val values: List<DummyContent.DummyItem>,
     private val twoPane: Boolean
   ) :
@@ -76,9 +76,9 @@ class ItemListActivity : AppCompatActivity() {
       onClickListener = View.OnClickListener { v ->
         val item = v.tag as DummyContent.DummyItem
         if (twoPane) {
-          val fragment = ItemDetailFragment().apply {
+          val fragment = DetailFragment().apply {
             arguments = Bundle().apply {
-              putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
+              putString(DetailFragment.ARG_ITEM_ID, item.id)
             }
           }
           parentActivity.supportFragmentManager
@@ -86,8 +86,8 @@ class ItemListActivity : AppCompatActivity() {
               .replace(R.id.item_detail_container, fragment)
               .commit()
         } else {
-          val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-            putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
+          val intent = Intent(v.context, DetailActivity::class.java).apply {
+            putExtra(DetailFragment.ARG_ITEM_ID, item.id)
           }
           v.context.startActivity(intent)
         }

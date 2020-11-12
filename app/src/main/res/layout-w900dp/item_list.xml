@@ -10,7 +10,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".feature.master.ItemListActivity"
+    tools:context=".feature.master.MasterActivity"
     >
 
   <!--
@@ -26,7 +26,7 @@
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
       app:layoutManager="LinearLayoutManager"
-      tools:context="com.haroldcalayan.feature.master.ItemListActivity"
+      tools:context="com.haroldcalayan.feature.master.MasterActivity"
       tools:listitem="@layout/item_list_content"
       />
 

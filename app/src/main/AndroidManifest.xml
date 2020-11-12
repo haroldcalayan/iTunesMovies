@@ -3,7 +3,7 @@
     package="com.haroldcalayan">
 
   <application
-      android:name=".iTunesMoviesApplication"
+      android:name=".ITunesMoviesApplication"
       android:allowBackup="true"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
@@ -11,23 +11,27 @@
       android:supportsRtl="true"
       android:theme="@style/AppTheme">
     <activity
-        android:name=".feature.master.ItemListActivity"
+        android:name=".feature.splash.SplashActivity"
         android:label="@string/app_name"
         android:theme="@style/AppTheme.NoActionBar">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
     <activity
-        android:name=".feature.detail.ItemDetailActivity"
+        android:name=".feature.master.MasterActivity"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.NoActionBar">
+    </activity>
+    <activity
+        android:name=".feature.detail.DetailActivity"
         android:label="@string/title_item_detail"
-        android:parentActivityName=".feature.master.ItemListActivity"
+        android:parentActivityName=".feature.master.MasterActivity"
         android:theme="@style/AppTheme.NoActionBar">
       <meta-data
           android:name="android.support.PARENT_ACTIVITY"
-          android:value="com.haroldcalayan.feature.master.ItemListActivity" />
+          android:value="com.haroldcalayan.feature.master.MasterActivity" />
     </activity>
   </application>
 
