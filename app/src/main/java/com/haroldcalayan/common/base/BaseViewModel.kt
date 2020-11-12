@@ -3,6 +3,8 @@ package com.haroldcalayan.common.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.haroldcalayan.ITunesMoviesApplication
+import com.haroldcalayan.feature.splash.SplashViewModel
 
 open class BaseViewModel : ViewModel() {
 
@@ -15,6 +17,7 @@ open class BaseViewModel : ViewModel() {
 
     private fun inject() {
         when (this) {
+            is SplashViewModel -> ITunesMoviesApplication.instance.appComponent.inject(this)
         }
     }
 

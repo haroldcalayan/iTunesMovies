@@ -26,7 +26,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
      *
      * @return variable id
      */
-    open fun getBindingVariable(): Int = BR.viewModel
+    abstract fun getBindingVariable(): Int
 
     /**
      * Initialize all data related task

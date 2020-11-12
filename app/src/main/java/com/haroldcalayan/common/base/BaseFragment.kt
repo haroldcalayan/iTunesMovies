@@ -26,7 +26,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel> : Fragment()
      *
      * @return variable id
      */
-    open fun getBindingVariable(): Int = BR.viewModel
+    abstract fun getBindingVariable(): Int
 
     /**
      * Initialize all data related task
