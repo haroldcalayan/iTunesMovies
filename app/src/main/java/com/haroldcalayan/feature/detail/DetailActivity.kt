@@ -6,7 +6,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import com.haroldcalayan.BR
 import com.haroldcalayan.R
+import com.haroldcalayan.common.base.BaseActivity
+import com.haroldcalayan.databinding.ActivityDetailBinding
 import com.haroldcalayan.feature.master.MasterActivity
 
 /**
@@ -15,20 +18,22 @@ import com.haroldcalayan.feature.master.MasterActivity
  * item details are presented side-by-side with a list of items
  * in a [MasterActivity].
  */
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
+
+  override fun getLayout() = R.layout.activity_detail
+
+  override fun getBindingVariable() = BR.viewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_detail)
     setSupportActionBar(findViewById(R.id.detail_toolbar))
 
     findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
       Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-          .setAction("Action", null)
-          .show()
+        .setAction("Action", null)
+        .show()
     }
 
-    // Show the Up button in the action bar.
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     // savedInstanceState is non-null when there is fragment state
@@ -47,29 +52,21 @@ class DetailActivity : AppCompatActivity() {
         arguments = Bundle().apply {
           putString(
             DetailFragment.ARG_ITEM_ID,
-              intent.getStringExtra(DetailFragment.ARG_ITEM_ID)
+            intent.getStringExtra(DetailFragment.ARG_ITEM_ID)
           )
         }
       }
 
       supportFragmentManager.beginTransaction()
-          .add(R.id.item_detail_container, fragment)
-          .commit()
+        .add(R.id.item_detail_container, fragment)
+        .commit()
     }
   }
 
   override fun onOptionsItemSelected(item: MenuItem) =
     when (item.itemId) {
       android.R.id.home -> {
-
-        // This ID represents the Home or Up button. In the case of this
-        // activity, the Up button is shown. For
-        // more details, see the Navigation pattern on Android Design:
-        //
-        // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-
         navigateUpTo(Intent(this, MasterActivity::class.java))
-
         true
       }
       else -> super.onOptionsItemSelected(item)
