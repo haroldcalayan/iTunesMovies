@@ -24,7 +24,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
     override fun initViews() {
         super.initViews()
         hideSystemUI()
-        //startTimer()
+        startTimer()
     }
 
     private fun startTimer() {
