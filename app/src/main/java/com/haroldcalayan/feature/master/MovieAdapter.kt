@@ -29,10 +29,11 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     init {
         onClickListener = View.OnClickListener { v ->
             val item = v.tag as Movie
+            val serializedItem = JsonUtils.getGson().toJson(item)
             if (twoPane) {
                 val fragment = DetailFragment().apply {
                     arguments = Bundle().apply {
-                        putString(DetailFragment.ARG_ITEM, JsonUtils.getGson().toJson(item))
+                        putString(DetailFragment.ARG_ITEM, serializedItem)
                     }
                 }
                 parentActivity.supportFragmentManager
@@ -41,7 +42,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
                     .commit()
             } else {
                 val intent = Intent(v.context, DetailActivity::class.java).apply {
-                    putExtra(DetailFragment.ARG_ITEM, item.id)
+                    putExtra(DetailFragment.ARG_ITEM, serializedItem)
                 }
                 v.context.startActivity(intent)
             }

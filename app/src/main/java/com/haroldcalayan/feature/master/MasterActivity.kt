@@ -2,12 +2,12 @@ package com.haroldcalayan.feature.master
 
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.haroldcalayan.BR
 import com.haroldcalayan.R
 import com.haroldcalayan.common.base.BaseActivity
 import com.haroldcalayan.databinding.ActivityMasterBinding
-import com.haroldcalayan.dummy.DummyContent
 import com.haroldcalayan.feature.detail.DetailActivity
 
 /**
@@ -19,6 +19,8 @@ import com.haroldcalayan.feature.detail.DetailActivity
  * item details side-by-side using two vertical panes.
  */
 class MasterActivity : BaseActivity<ActivityMasterBinding, MasterViewModel>() {
+
+  private lateinit var adapter: MovieAdapter
 
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -48,7 +50,15 @@ class MasterActivity : BaseActivity<ActivityMasterBinding, MasterViewModel>() {
     setupRecyclerView(findViewById(R.id.item_list))
   }
 
+  override fun subscribe() {
+    super.subscribe()
+    getViewModel().movies.observe(this, Observer {
+      adapter.updateList(it)
+    })
+  }
+
   private fun setupRecyclerView(recyclerView: RecyclerView) {
-    recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, twoPane)
+    adapter = MovieAdapter(this, emptyList(), twoPane)
+    recyclerView.adapter = adapter
   }
 }

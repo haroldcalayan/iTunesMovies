@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import com.haroldcalayan.BR
 import com.haroldcalayan.R
@@ -51,8 +50,8 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
       val fragment = DetailFragment().apply {
         arguments = Bundle().apply {
           putString(
-            DetailFragment.ARG_ITEM_ID,
-            intent.getStringExtra(DetailFragment.ARG_ITEM_ID)
+            DetailFragment.ARG_ITEM,
+            intent.getStringExtra(DetailFragment.ARG_ITEM)
           )
         }
       }

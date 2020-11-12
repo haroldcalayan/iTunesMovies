@@ -5,8 +5,9 @@ import android.view.View
 import com.haroldcalayan.BR
 import com.haroldcalayan.R
 import com.haroldcalayan.common.base.BaseFragment
+import com.haroldcalayan.data.model.Movie
 import com.haroldcalayan.databinding.FragmentDetailBinding
-import com.haroldcalayan.dummy.DummyContent
+import com.haroldcalayan.utils.JsonUtils
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_detail.*
  */
 class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
 
-  private var item: DummyContent.DummyItem? = null
+  private var item: Movie? = null
 
   override fun getLayout() = R.layout.fragment_detail
 
@@ -27,9 +28,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     arguments?.let {
-      if (it.containsKey(ARG_ITEM_ID)) {
-        item = DummyContent.ITEM_MAP[it.getString(ARG_ITEM_ID)]
-        toolbar_layout?.title = item?.content
+      if (it.containsKey(ARG_ITEM)) {
+        item = JsonUtils.getGson().fromJson(it.getString(ARG_ITEM), Movie::class.java)
+        toolbar_layout?.title = item?.artistName
       }
     }
   }
@@ -37,11 +38,11 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     item?.let {
-      item_detail.text = it.details
+      item_detail.text = it.currency
     }
   }
 
   companion object {
-    const val ARG_ITEM_ID = "item_id"
+    const val ARG_ITEM = "item"
   }
 }
