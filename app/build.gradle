@@ -152,6 +152,9 @@ dependencies {
   // Picasso
   implementation picassoDependecy
 
+  // Sticky Header
+  implementation 'com.timehop.stickyheadersrecyclerview:library:[0.4.3]@aar'
+
   // Test
   testImplementation testDependencies.junit
   androidTestImplementation testDependencies.extJunit
