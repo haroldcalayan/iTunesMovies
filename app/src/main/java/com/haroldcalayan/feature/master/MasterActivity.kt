@@ -3,6 +3,7 @@ package com.haroldcalayan.feature.master
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haroldcalayan.BR
 import com.haroldcalayan.R
@@ -58,6 +59,15 @@ class MasterActivity : BaseActivity<ActivityMasterBinding, MasterViewModel>() {
   }
 
   private fun setupRecyclerView(recyclerView: RecyclerView) {
+    val gridLayoutManager = GridLayoutManager(this, 2)
+    gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+
+      override fun getSpanSize(position: Int) : Int {
+        return (if ((position % 3) == 0) 2 else 1)
+      }
+    }
+    recyclerView.layoutManager = gridLayoutManager
+
     adapter = MovieAdapter(this, emptyList(), twoPane)
     recyclerView.adapter = adapter
   }

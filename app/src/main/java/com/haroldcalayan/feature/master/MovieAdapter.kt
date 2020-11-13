@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.haroldcalayan.R
 import com.haroldcalayan.data.model.Movie
+import com.haroldcalayan.databinding.AdapterMovieBinding
 import com.haroldcalayan.feature.detail.DetailActivity
 import com.haroldcalayan.feature.detail.DetailFragment
 import com.haroldcalayan.utils.JsonUtils
@@ -53,9 +53,9 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_list_content, parent, false)
-        return ViewHolder(view)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = AdapterMovieBinding.inflate(inflater)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
@@ -63,8 +63,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
         position: Int
     ) {
         val item = movies[position]
-        holder.idView.text = item.country
-        holder.contentView.text = item.currency
+        holder.bind(item)
 
         with(holder.itemView) {
             tag = item
@@ -79,8 +78,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.id_text)
-        val contentView: TextView = view.findViewById(R.id.content)
+    inner class ViewHolder(val binding: AdapterMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(movie: Movie) {
+            binding.movie = movie
+            binding.executePendingBindings()
+        }
     }
 }
