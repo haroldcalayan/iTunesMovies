@@ -11,6 +11,7 @@ import com.haroldcalayan.R
 import com.haroldcalayan.common.base.BaseActivity
 import com.haroldcalayan.databinding.ActivityMasterBinding
 import com.haroldcalayan.feature.detail.DetailActivity
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration
 
 /**
  * An activity representing a list of Pings. This activity
@@ -22,7 +23,7 @@ import com.haroldcalayan.feature.detail.DetailActivity
  */
 class MasterActivity : BaseActivity<ActivityMasterBinding, MasterViewModel>() {
 
-  private lateinit var adapter: MovieAdapter
+  private lateinit var adapter: MovieHeaderAdapter
 
   /**
    * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -68,7 +69,8 @@ class MasterActivity : BaseActivity<ActivityMasterBinding, MasterViewModel>() {
       }
     }
     recyclerView.layoutManager = LinearLayoutManager(this)
-    adapter = MovieAdapter(this, emptyList(), twoPane)
+    adapter = MovieHeaderAdapter(this, emptyList(), twoPane)
     recyclerView.adapter = adapter
+    recyclerView.addItemDecoration(StickyRecyclerHeadersDecoration(adapter))
   }
 }
