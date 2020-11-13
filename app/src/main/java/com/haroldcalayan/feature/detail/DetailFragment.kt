@@ -32,7 +32,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
       if (it.containsKey(ARG_ITEM)) {
         item = JsonUtils.getGson().fromJson(it.getString(ARG_ITEM), Movie::class.java)
         activity?.toolbar_layout?.title = item?.trackName
-        Timber.d("item: $item")
       }
     }
   }
@@ -41,19 +40,43 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
     super.onViewCreated(view, savedInstanceState)
     getBinding().movie = item
     item?.let {
-      var movieInfo = String().apply {
-        plus("Track ID: ").plus(it.trackId).plus("\n")
-        plus("Track Name: ").plus(it.trackName).plus("\n")
-        plus("Track Price: ").plus(it.currency).plus(" ").plus(it.trackPrice).plus("\n")
-        plus("Collection ID: ").plus(it.collectionId).plus("\n")
-        plus("Collection Name: ").plus(it.collectionName).plus("\n")
-        plus("Collection Price: ").plus(it.currency).plus(" ").plus(it.collectionPrice).plus("\n")
-        plus("Kind: ").plus(it.kind).plus("\n")
-        plus("Artist Name: ").plus(it.artistName).plus("\n")
-        plus("Country: ").plus(it.country).plus("\n")
-        plus("Release Date: ").plus(it.releaseDate).plus("\n")
+      var movieInfo = StringBuilder()
+      movieInfo.apply {
+        append("Track ID: ")
+        append(it.trackId)
+        append("\n")
+        append("Track Name: ")
+        append(it.trackName)
+        append("\n")
+        append("Track Price: ")
+        append(it.currency)
+        append(" ")
+        append(it.trackPrice)
+        append("\n")
+        append("Collection ID: ")
+        append(it.collectionId)
+        append("\n")
+        append("Collection Name: ")
+        append(it.collectionName)
+        append("\n")
+        append("Collection Price: ")
+        append(it.currency)
+        append(" ")
+        append(it.collectionPrice)
+        append("\n")
+        append("Kind: ")
+        append(it.kind)
+        append("\n")
+        append("Artist Name: ")
+        append(it.artistName)
+        append("\n")
+        append("Country: ")
+        append(it.country)
+        append("\n")
+        append("Release Date: ")
+        append(it.releaseDate)
+        append("\n")
       }
-      Timber.d("movieInfo: $movieInfo")
       item_detail.text = movieInfo
     }
   }
