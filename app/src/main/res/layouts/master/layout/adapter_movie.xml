@@ -8,7 +8,7 @@
         type="com.haroldcalayan.data.model.Movie" />
   </data>
 
-  <androidx.constraintlayout.widget.ConstraintLayout
+  <FrameLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -16,64 +16,52 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:image="@{ movie.artworkUrl100 }"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        app:image="@{ movie.artworkUrl100 }"/>
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/radial_gradiant_black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:background="@drawable/radial_gradiant_black" />
 
-    <TextView
-        android:id="@+id/track_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@{ movie.trackName }"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{ movie.primaryGenreName }"
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/track_name"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/price"/>
+      <TextView
+          android:id="@+id/track_name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_margin="8dp"
+          android:text="@{ movie.trackName }"
+          android:textAppearance="?attr/textAppearanceListItem"
+          android:textSize="20sp"
+          android:textColor="@android:color/white"
+          android:textStyle="bold"
+          android:gravity="center"
+          android:layout_centerInParent="true"/>
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:text='@{ movie.currency.concat(" ").concat(String.valueOf(movie.trackPrice)) }'
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
-        android:textColor="@android:color/white"
-        android:gravity="center"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+      <TextView
+          android:id="@+id/genre"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="@{ movie.primaryGenreName }"
+          android:textAppearance="?attr/textAppearanceListItemSecondary"
+          android:textColor="@android:color/white"
+          android:gravity="center"
+          android:layout_below="@+id/track_name"/>
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+      <TextView
+          android:id="@+id/price"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="6dp"
+          android:text='@{ movie.currency.concat(" ").concat(String.valueOf(movie.trackPrice)) }'
+          android:textAppearance="?attr/textAppearanceListItemSecondary"
+          android:textColor="@android:color/white"
+          android:gravity="center"
+          android:layout_below="@+id/genre"/>
+    </RelativeLayout>
+  </FrameLayout>
 </layout>

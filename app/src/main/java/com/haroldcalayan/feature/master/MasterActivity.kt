@@ -4,6 +4,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.haroldcalayan.BR
 import com.haroldcalayan.R
@@ -66,8 +67,7 @@ class MasterActivity : BaseActivity<ActivityMasterBinding, MasterViewModel>() {
         return (if ((position % 3) == 0) 2 else 1)
       }
     }
-    recyclerView.layoutManager = gridLayoutManager
-
+    recyclerView.layoutManager = LinearLayoutManager(this)
     adapter = MovieAdapter(this, emptyList(), twoPane)
     recyclerView.adapter = adapter
   }

@@ -7,5 +7,11 @@ import com.squareup.picasso.Picasso
 
 @BindingAdapter("app:image")
 fun setImage(view: ImageView, img: String?) {
-    Picasso.get().load(img).placeholder(R.drawable.placeholder_image).into(view)
+    Picasso.get()
+        .load(img)
+        .placeholder(R.drawable.placeholder_image)
+        .error(R.drawable.placeholder_image)
+        .centerCrop()
+        .fit()
+        .into(view)
 }
