@@ -65,7 +65,8 @@ class DetailActivity : BaseActivity<ActivityDetailBinding, DetailViewModel>() {
   override fun onOptionsItemSelected(item: MenuItem) =
     when (item.itemId) {
       android.R.id.home -> {
-        navigateUpTo(Intent(this, MasterActivity::class.java))
+        //navigateUpTo(Intent(this, MasterActivity::class.java))
+        finish()
         true
       }
       else -> super.onOptionsItemSelected(item)
