@@ -3,7 +3,7 @@ package com.haroldcalayan.common.di.component
 import com.haroldcalayan.common.di.module.AppModule
 import com.haroldcalayan.common.di.module.NetworkModule
 import com.haroldcalayan.common.di.module.RepositoryModule
-import com.haroldcalayan.data.MovieRepository
+import com.haroldcalayan.data.MovieRepositoryImpl
 import com.haroldcalayan.feature.detail.DetailViewModel
 import com.haroldcalayan.feature.master.MasterViewModel
 import com.haroldcalayan.feature.splash.SplashViewModel
@@ -18,5 +18,5 @@ interface AppComponent {
     fun inject(viewModel: MasterViewModel)
     fun inject(viewModel: DetailViewModel)
 
-    fun inject(repository: MovieRepository)
+    fun inject(repository: MovieRepositoryImpl)
 }

@@ -2,6 +2,7 @@ package com.haroldcalayan.common.base
 
 import com.haroldcalayan.ITunesMoviesApplication
 import com.haroldcalayan.data.MovieRepository
+import com.haroldcalayan.data.MovieRepositoryImpl
 
 abstract class BaseRepository<T> {
 
@@ -11,7 +12,7 @@ abstract class BaseRepository<T> {
 
     private fun inject() {
         when (this) {
-            is MovieRepository -> ITunesMoviesApplication.instance.appComponent.inject(this)
+            is MovieRepositoryImpl -> ITunesMoviesApplication.instance.appComponent.inject(this)
         }
     }
 
