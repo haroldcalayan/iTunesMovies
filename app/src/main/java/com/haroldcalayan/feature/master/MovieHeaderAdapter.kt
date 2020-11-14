@@ -54,11 +54,9 @@ class MovieHeaderAdapter : MovieAdapter<MovieHeaderAdapter.MovieHeaderViewHolder
     }
 
     override fun getHeaderId(position: Int): Long {
-        if (position == 0) {
-            return -1;
-        } else {
-            return movies[position].trackName?.get(0)?.toLong() ?: 0
-        }
+        //return movies[position].trackName?.toLong() ?: 0
+        //return if(position == 2) position.toLong() else 0
+        return 1
     }
 
     override fun onCreateHeaderViewHolder(parent: ViewGroup?): RecyclerView.ViewHolder {
@@ -70,7 +68,7 @@ class MovieHeaderAdapter : MovieAdapter<MovieHeaderAdapter.MovieHeaderViewHolder
 
     override fun onBindHeaderViewHolder(p0: RecyclerView.ViewHolder?, p1: Int) {
         val textView = p0?.itemView as TextView
-        textView.text = String.valueOf(getMovie(p1).trackName?.get(0))
+        textView.text = String.valueOf(getMovie(p1).userLastVisited)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHeaderViewHolder {

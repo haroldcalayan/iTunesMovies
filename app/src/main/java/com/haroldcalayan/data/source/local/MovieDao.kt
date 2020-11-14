@@ -1,9 +1,6 @@
 package com.haroldcalayan.data.source.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.haroldcalayan.data.model.Movie
 
 @Dao
@@ -20,6 +17,9 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovies(movies: List<Movie>)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateMovie(movie: Movie)
 
     @Query("DELETE FROM movie")
     suspend fun deleteAll()

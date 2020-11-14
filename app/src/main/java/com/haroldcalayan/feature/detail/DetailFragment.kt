@@ -7,6 +7,7 @@ import com.haroldcalayan.R
 import com.haroldcalayan.common.base.BaseFragment
 import com.haroldcalayan.data.model.Movie
 import com.haroldcalayan.databinding.FragmentDetailBinding
+import com.haroldcalayan.utils.DateUtils
 import com.haroldcalayan.utils.JsonUtils
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.fragment_detail.*
@@ -79,6 +80,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>() {
       }
       item_detail.text = movieInfo
     }
+
+    Timber.d("today: " + DateUtils.today())
   }
 
   companion object {

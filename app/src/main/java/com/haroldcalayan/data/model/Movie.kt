@@ -2,6 +2,7 @@ package com.haroldcalayan.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "movie")
 class Movie (
@@ -41,5 +42,6 @@ class Movie (
     val contentAdvisoryRating: String?,
     val shortDescription: String?,
     val longDescription: String?,
-    val hasITunesExtras: Boolean?
+    val hasITunesExtras: Boolean?,
+    var userLastVisited: Date?
 )

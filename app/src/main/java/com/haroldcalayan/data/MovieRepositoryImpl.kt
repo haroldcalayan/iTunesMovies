@@ -42,8 +42,7 @@ class MovieRepositoryImpl(private val context: Context,
 
     override suspend fun insertItem(list: List<Movie>) = appDatabase.movieDao().insertMovies(list)
 
-    override suspend fun updateItem(t: Movie) {
-    }
+    override suspend fun updateItem(movie: Movie) = appDatabase.movieDao().updateMovie(movie)
 
     override suspend fun deleteItem() = appDatabase.movieDao().deleteAll()
 
